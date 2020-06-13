@@ -1,0 +1,78 @@
+name:                yapi-runner-backend
+version:             0.1.0.0
+github:              githubuser/yapi-runner
+license:             BSD3
+author:              Author name here
+maintainer:          example@example.com
+copyright:           2020 Author name here
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on Github at <https://github.com/githubuser/yapi-runner#readme>
+
+dependencies:
+- base >= 4.11 && < 10
+- rio >= 0.1.12.0
+- aeson
+- servant
+- servant-server
+- hoauth2
+- persistent
+- persistent-sqlite
+- persistent-template
+- time
+- resource-pool
+- monad-logger
+- rio-orphans
+- yaml
+- lens
+- yapi-runner-common
+- mtl
+- warp
+
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wpartial-fields
+- -Wredundant-constraints
+
+default-extensions:
+- NoImplicitPrelude
+- DeriveGeneric
+- OverloadedStrings
+
+library:
+  source-dirs: src
+
+executables:
+  yapi-runner-server:
+    main:                Main.hs
+    source-dirs:         app
+    dependencies:
+    - yapi-runner-backend
+
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+
+tests:
+  yapi-runner-test:
+    main:                Spec.hs
+    source-dirs:         test
+    dependencies:
+    - yapi-runner
+    - hspec
+
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N

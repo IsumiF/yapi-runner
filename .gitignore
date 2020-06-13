@@ -1,0 +1,6 @@
+*~
+*.swp
+tarballs/
+*.cabal
+.stack-work/
+local/
