@@ -64,6 +64,11 @@ getClientId = do
     config <- getConfig
     pure $ config ^. (config_auth . authConfig_clientId)
 
+getClientSecret :: MonadConfig m => m Text
+getClientSecret = do
+    config <- getConfig
+    pure $ config ^. (config_auth . authConfig_clientSecret)
+
 handleLoginCallback :: (MonadConfig m, Req.MonadHttpReq m, MonadLogger m, MonadRandom m)
                     => Maybe Text
                     -> Maybe Text
@@ -77,11 +82,12 @@ handleLoginCallback stateMaybe codeMaybe errorMaybe = do
       Just code -> do
         redirectUri <- lift getRedirectUri
         clientId <- lift getClientId
+        clientSecret <- lift getClientSecret
         resp :: Req.JsonResponse OAuthTokenResponse <- lift . Req.runReq Req.defaultHttpConfig $ Req.req Req.POST
           (Req.https "oauth2.googleapis.com" Req./: "token")
           Req.NoReqBody Req.jsonResponse
           ( "client_id" Req.=: clientId
-          <> "client_secret" Req.=: ("_SPduKC6O8uIifmtVKIIKEcF" :: Text)
+          <> "client_secret" Req.=: clientSecret
           <> "code" Req.=: code
           <> "grant_type" Req.=: ("authorization_code" :: Text)
           <> "redirect_uri" Req.=: redirectUri

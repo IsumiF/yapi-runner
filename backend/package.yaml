@@ -19,11 +19,17 @@ dependencies:
   - base >= 4.11 && < 10
   - rio >= 0.1.12.0
   - aeson
-  - hoauth2
-  - jose
   - base64
+  - bytestring
+  - cookie
+  - cryptonite
+  - file-embed
+  - http-types
+  - jose
   - lens
   - monad-logger
+  - monad-logger
+  - monad-time
   - mtl
   - persistent
   - persistent-sqlite
@@ -36,17 +42,10 @@ dependencies:
   - servant-server
   - time
   - url
+  - wai
   - warp
   - yaml
   - yapi-runner-common
-  - monad-logger
-  - wai
-  - http-types
-  - file-embed
-  - bytestring
-  - cryptonite
-  - monad-time
-  - cookie
 
 ghc-options:
   - -Wall

@@ -1,6 +1,7 @@
 module Backend.Handler.Config
   ( AuthConfig(..)
   , authConfig_clientId
+  , authConfig_clientSecret
   ) where
 
 import           Backend.Util (aesonOptions)
@@ -10,7 +11,8 @@ import           GHC.Generics
 import           RIO
 
 data AuthConfig = AuthConfig
-    { _authConfig_clientId :: Text
+    { _authConfig_clientId     :: Text
+    , _authConfig_clientSecret :: Text
     }
     deriving (Show, Eq, Generic)
 
