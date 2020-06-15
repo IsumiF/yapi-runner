@@ -4,3 +4,5 @@ tarballs/
 *.cabal
 .stack-work/
 local/
+/backend/conf/
+!/backend/conf/config.template.yaml
